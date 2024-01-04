@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Website Title</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://unpkg.com/three@0.125.0/build/three.min.js"></script>
+    <script src="https://unpkg.com/three@0.125.0/examples/js/loaders/GLTFLoader.js"></script>
+
+</head>
+<body>
+
+ <canvas id="backgroundCanvas"></canvas>
+
+<nav>
+    <ul>
+        <li><a href="javascript:void(0)" class="tablinks" onclick="openTab(event, 'Home')">Home</a></li>
+        <li><a href="javascript:void(0)" class="tablinks" onclick="openTab(event, 'Models')">3D Models</a></li>
+        <li><a href="javascript:void(0)" class="tablinks" onclick="openTab(event, 'Gallery')">Image Gallery</a></li>
+        <li><a href="javascript:void(0)" class="tablinks" onclick="openTab(event, 'About')">About Me</a></li>
+    </ul>
+</nav>
+
+<section id="Home" class="tabcontent">
+    <div class="container">
+        <h1>Welcome to My Website</h1>
+        <p>Here's the latest news or updates!</p>
+        <!-- Additional content for the homepage feed -->
+    </div>
+</section>
+
+<section id="Models" class="tabcontent">
+    <div class="container" id="modelContainer">
+        <h2>My 3D Models</h2>
+        <!-- Content showcasing your 3D models -->
+        
+        <div class="sketchfab-embed-wrapper"> <iframe title="Exo Suit (WIP)" frameborder="0" allowfullscreen mozallowfullscreen="true" webkitallowfullscreen="true" allow="autoplay; fullscreen; xr-spatial-tracking" xr-spatial-tracking execution-while-out-of-viewport execution-while-not-rendered web-share src="https://sketchfab.com/models/f0889c290d4640758b9ff0acff402d00/embed"> </iframe> </div>
+
+        <div class="sketchfab-embed-wrapper"> <iframe title="Project Scout" frameborder="0" allowfullscreen mozallowfullscreen="true" webkitallowfullscreen="true" allow="autoplay; fullscreen; xr-spatial-tracking" xr-spatial-tracking execution-while-out-of-viewport execution-while-not-rendered web-share src="https://sketchfab.com/models/a520f063303c4bf4a3145ffbfb7aa062/embed?ui_theme=dark"> </iframe> </div>
+
+        <div class="sketchfab-embed-wrapper"> <iframe title="Project Zipper" frameborder="0" allowfullscreen mozallowfullscreen="true" webkitallowfullscreen="true" allow="autoplay; fullscreen; xr-spatial-tracking" xr-spatial-tracking execution-while-out-of-viewport execution-while-not-rendered web-share src="https://sketchfab.com/models/244f9addc9e3494282af045a4332994a/embed"> </iframe> </div>
+
+        <div class="sketchfab-embed-wrapper"> <iframe title="Project Delta" frameborder="0" allowfullscreen mozallowfullscreen="true" webkitallowfullscreen="true" allow="autoplay; fullscreen; xr-spatial-tracking" xr-spatial-tracking execution-while-out-of-viewport execution-while-not-rendered web-share src="https://sketchfab.com/models/c5a780a210834425accd30ccef6f42ca/embed"> </iframe> </div>
+
+    </div>
+</section>
+
+<section id="Gallery" class="tabcontent">
+    <div class="container">
+    <h2>Image Gallery</h2>
+    <!-- Image gallery content -->
+
+    <img src="res/images/bottle.png">
+    <img src="res/images/crusader.png">
+    <img src="res/images/Robot Composite.png">
+    <img src="res/images/station.png">
+    <img src="res/images/The Warden.png">
+    <img src="res/images/Viper Squadron Galactica.png">
+    
+    </div>
+</section>
+
+<section id="About" class="tabcontent">
+    <div class="container">
+        <h2>About Me</h2>
+        <!-- About me content -->
+    </div>
+</section>
+
+<script src="index.js"></script>
+
+</body>
+</html>
