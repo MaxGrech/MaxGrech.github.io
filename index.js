@@ -25,6 +25,12 @@ function openTab(evt, tabName) {
 let canvas = document.getElementById('backgroundCanvas');
 let ctx = canvas.getContext('2d');
 
+// Create an off-screen canvas (buffer)
+var bufferCanvas = document.createElement('canvas');
+bufferCanvas.width = canvas.width;
+bufferCanvas.height = canvas.height;
+var bufferCtx = bufferCanvas.getContext('2d');
+
 
 let w = window.innerWidth;
 let h = window.innerHeight;
@@ -39,6 +45,9 @@ window.addEventListener('resize', resizeCanvas, false);
 function resizeCanvas() {
     canvas.width = window.innerWidth;
     canvas.height = window.innerHeight;
+    bufferCanvas.width = window.innerWidth;
+    bufferCanvas.height = window.innerHeight;
+    
     w = canvas.width;
     h = canvas.height;
 }
@@ -83,11 +92,9 @@ class Particle
     }
 }
 
-
-
 let particles = [];
-let count = 500;
-let dist_connect = 120;
+let count = 100;
+let dist_connect = 150;
 let speed = 1;
 let max_speed = 2;
 
@@ -96,13 +103,13 @@ for (let i=0; i<count; i++)
     particles.push(new Particle(Math.random()*w,Math.random()*h,(Math.random()-0.5)*speed*2, (Math.random()-0.5)*speed*2, 'rgba(100,100,100,1)'));
 }
 
-ctx.lineWidth = 0.5;
+bufferCtx.lineWidth = 0.5;
 
 
 function update()
 {
-    ctx.fillStyle = 'rgba(120,120,120,0.1)'
-    ctx.fillRect(0, 0, canvas.width, canvas.height);
+    bufferCtx.fillStyle = 'rgba(122,122,122,1)'
+    bufferCtx.fillRect(0, 0, w, h);
 
     
 
@@ -147,23 +154,26 @@ function update()
             if (d2 < dist_connect)
             {
                 let nearness = (dist_connect - d2) / dist_connect;
-                ctx.strokeStyle = 'rgba('+ ((d < dist_connect) ? 100 : 150) +',' + ((d < dist_connect) ? 50 : 150) + ','+((d < dist_connect) ? 255 : 150)+',' + nearness +  ')';
-                ctx.beginPath();
-                ctx.moveTo(particle.x, particle.y);
-                ctx.lineTo(particle2.x, particle2.y);
-                ctx.stroke();
+                //bufferCtx.strokeStyle = 'rgba('+ ((d < dist_connect) ? 100 : 150) +',' + ((d < dist_connect) ? 50 : 150) + ','+((d < dist_connect) ? 255 : 150)+',' + nearness +  ')';
+                bufferCtx.strokeStyle = 'rgba(255,255,255,'+nearness+')';
+                bufferCtx.beginPath();
+                bufferCtx.moveTo(particle.x, particle.y);
+                bufferCtx.lineTo(particle2.x, particle2.y);
+                bufferCtx.stroke();
             }
         }
 
 
-        ctx.fillStyle = (d < 100) ? 'white' : 'white'; //particle.color;
+        bufferCtx.fillStyle = (d < 100) ? 'white' : 'white'; //particle.color;
         //ctx.fillStyle = particle.color;
-        ctx.beginPath();
-        ctx.arc(particle.x, particle.y, 1, 0, 2 * Math.PI);
-        ctx.fill();
+        bufferCtx.beginPath();
+        bufferCtx.arc(particle.x, particle.y, 2, 0, 2 * Math.PI);
+        bufferCtx.fill();
     }
 
-    
+    // Draw the buffer onto the main canvas
+    ctx.clearRect(0, 0, w, h);
+    ctx.drawImage(bufferCanvas, 0, 0);
 
     requestAnimationFrame(update);
 }

@@ -51,7 +51,7 @@ h1, h2 {
 .tabcontent {
     display: none;
     padding: 20px;
-    border: 1px solid #ddd;
+    border: 0px solid #000;
     border-top: none;
 }
 
