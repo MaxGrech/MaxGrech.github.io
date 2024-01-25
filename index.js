@@ -39,7 +39,10 @@ resizeCanvas();
 
 // Resize the canvas to fill browser window dynamically
 window.addEventListener('resize', resizeCanvas, false);
-
+window.onscroll = function() {
+    var scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
+    document.querySelector('.banner-image').style.top = -(scrollTop * 0.7) + 'px';
+};
 
 
 function resizeCanvas() {
@@ -105,10 +108,11 @@ for (let i=0; i<count; i++)
 
 bufferCtx.lineWidth = 0.5;
 
+bufferCtx.lineCap = "round"
 
 function update()
 {
-    bufferCtx.fillStyle = 'rgba(122,122,122,1)'
+    bufferCtx.fillStyle = 'rgba(35,30,60,1)'
     bufferCtx.fillRect(0, 0, w, h);
 
     
@@ -136,10 +140,10 @@ function update()
         particle.x += particle.vx;
         particle.y += particle.vy;
 
-        if (particle.x < 0) particle.x += w;
-        else if (particle.x > w) particle.x -= w;
-        if (particle.y < 0) particle.y += h;
-        else if (particle.y > h) particle.y -= h;
+        if (particle.x < -100) particle.x += w+200;
+        else if (particle.x > w+100) particle.x -= w+200;
+        if (particle.y < -100) particle.y += h+200;
+        else if (particle.y > h+100) particle.y -= h+200;
 
 
         for (let j=i; j<count; j++)
