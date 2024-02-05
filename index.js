@@ -44,6 +44,10 @@ window.onscroll = function() {
     document.querySelector('.banner-image').style.top = -(scrollTop * 0.7) + 'px';
 };
 
+window.onload = function() {
+  // Find the first .tablinks element and simulate a click
+  document.querySelector('.main_menu .tablinks').click();
+};
 
 function resizeCanvas() {
     canvas.width = window.innerWidth;
